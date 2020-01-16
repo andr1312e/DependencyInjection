@@ -1,7 +1,39 @@
 ﻿@model IEnumerable<Product>
-@{ Layout=null}
+@{ Layout = null;}
 <html>
 <head>
     <title>Dependency Injection</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css"/>
 </head>
+<body class="m-1 p-1">
+      @if (ViewData.Count > 0)
+      {
+          <table class="table table-bordered table-sm table-striped">
+              @foreach (var kpv in ViewData)
+              {
+                  <tr><th>@kpv.Key</th><th>@kpv.Value</th></tr>
+              }
+          </table>
+      }
+      <table class="table table-bordered table-sm table-striped">
+                <thead>
+                    <tr><td>Name</td><td>Price</td></tr>
+                </thead>
+                <tbody>
+                    @if (Model == null)
+                    {
+                        <tr><td colspan="3" class="text-center"> No model data</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var p in Model){
+                            <tr>
+                                <td>@p.Name</td>
+                                <td>@p.Price.ToString()</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+       </table>
+</body>
 </html>
